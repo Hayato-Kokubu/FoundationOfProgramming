@@ -12,8 +12,7 @@ let seiza m d =  if( (m = 3 && d >= 21 ) || (m = 4 && d < 20 ) ) then "おひつ
             else if( (m = 11 && d >= 22 ) || (m = 12 && d < 22 ) ) then "いて座"
             else if( (m = 12 && d >= 22 ) || (m = 1 && d < 20 ) ) then "やぎ座"
             else if( (m = 1 && d >= 20 ) || (m = 2 && d < 19 ) ) then "みずがめ座"
-            else if( (m = 2 && d >= 20 ) || (m = 3 && d < 21 ) ) then "うお座"
-            else "日付誤り"
+            else "うお座"
 
 (*テスト*)
 let test01_1 =  seiza  3 21 = "おひつじ座"
