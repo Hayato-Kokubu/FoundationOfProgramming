@@ -1,0 +1,2 @@
+let empty = []
+let list = 1::2::3::[]
