@@ -34,3 +34,22 @@ let test4 = contain_zero [1;2;3;0;5;6;7] = true
 let test5 = contain_zero [1;2;3;4;5;6;7] = false
 
 
+(*
+ int list は
+ - []               空リスト または
+ - first :: rest    最初の要素がfirst , 残りのリストがrest
+ という形
+ *)
+
+(* 目的: 受け取った整数リスト lst の要素の和を求める *)
+(* sum: int list -> int *)
+
+let sum lst = match lst with 
+    [] -> 0
+|   first :: rest -> 0  (* sum rest *)
+
+(* テスト *)
+let sum_test1 = sum [] = 0
+let sum_test2 = sum [2] = 2
+let sum_test3 = sum [1;3] = 4
+let sum_test4 = sum [1;2;3;4;5;6;7;8;9;10] = 55
