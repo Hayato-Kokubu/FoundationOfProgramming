@@ -23,4 +23,28 @@ Stack overflow during evaluation で止まることも。。。
 停止性を保証している　ことを明示する　という意味。
 
 
+q9.6
+
+concat ["春” ; ”夏"]  がうまくいかなかった
+["春” ; ”夏"] を、"春” ; ”夏" という1つの文字列を要素にもつりすと　と扱われる。
+"春” :: ”夏" :: [] と書くと通る
+
+記号の半角・全角のちがい？
+
+
+
+let res3 = concat ["春” ; ”夏"] // "春” ; ”夏"
+
+
+let sampl2 =  match ["春” ; ”夏"] with   // "春” ; ”夏" 
+   [] -> ""
+|  first :: rest -> first
+
+let sampl3 = match ["春” ; ”夏"] with   // []
+    [] -> []
+|   first :: rest -> rest
+
+
+
+
 	

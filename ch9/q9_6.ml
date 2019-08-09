@@ -10,10 +10,11 @@
 
 let rec concat lst = match lst with 
     [] -> ""
-|   first :: rest -> "" (* concat rest *)
+|   first :: rest -> first ^ (concat rest)
 
 (* test *)
 let concatTest1 = concat [] = ""
 let concatTest2 = concat ["春"] = "春"
-let concatTest3 = concat ["春”; ”夏"] = "春夏"
-let concatTest4 = concat ["春”; ”夏"; "秋”; ”冬"] = "春夏秋冬"
+let concatTest3 = concat ("春" :: "夏" :: []) = "春夏"
+let concatTest4 = concat ( "春" :: "夏" :: "秋" :: "冬" :: [] ) = "春夏秋冬"
+let res = concat ( "春" :: "夏" :: "秋" :: "冬" :: [] )
