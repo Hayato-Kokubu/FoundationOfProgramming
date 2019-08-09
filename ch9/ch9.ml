@@ -44,9 +44,9 @@ let test5 = contain_zero [1;2;3;4;5;6;7] = false
 (* 目的: 受け取った整数リスト lst の要素の和を求める *)
 (* sum: int list -> int *)
 
-let sum lst = match lst with 
+let rec sum lst = match lst with 
     [] -> 0
-|   first :: rest -> 0  (* sum rest *)
+|   first :: rest -> first + sum rest
 
 (* テスト *)
 let sum_test1 = sum [] = 0
