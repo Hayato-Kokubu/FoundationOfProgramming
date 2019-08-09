@@ -8,9 +8,9 @@
 (* 目的: 整数のリスト lst を受け取り、その長さを求める *)
 (* length: int list -> int *)
 
-let length lst = match lst with 
+let rec length lst = match lst with 
     [] -> 0
-|   first :: rest -> 0 (* length rest *)
+|   first :: rest -> 1 + length rest
 
 (* test *)
 let length_test1 =  length []       = 0
@@ -18,3 +18,12 @@ let length_test2 =  length [0]      = 1
 let length_test3 =  length [1]      = 1
 let length_test4 =  length [1;0]    = 2
 let length_test4 =  length [2;-1;3] = 3
+
+(* 
+  length [2:-1:3]
+= 1 + length [-1:3]
+= 1 + ( 1 + length [3] )
+= 1 + ( 1 + ( 1 + length [] ) )
+= 1 + ( 1 + ( 1 + 0 ) )
+= 3
+*)

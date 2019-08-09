@@ -11,6 +11,9 @@ a :: b :: c :: [] と [a;b;c] は同じ
 test1 まで完了 test2 以降が実行されていないように見える
 => test2を計算するのに延々再帰しているため結果がでない
 command C で中断できる
+Stack overflow during evaluation で止まることも。。。
+
+
 
 デザインレシピ
 
