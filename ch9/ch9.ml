@@ -53,3 +53,46 @@ let sum_test1 = sum [] = 0
 let sum_test2 = sum [2] = 2
 let sum_test3 = sum [1;3] = 4
 let sum_test4 = sum [1;2;3;4;5;6;7;8;9;10] = 55
+
+
+(* 学生ひとり分のデータ(名前・点数・成績)を表す型 *)
+
+type gakusei_t = {
+    name:  string; (* 名前 *)
+    point: int;    (* 点数 *)
+    grade: string; (* 成績 *)
+}
+
+(* gakusei_t list は
+ - []               空リスト または
+ - first :: rest    最初の要素がfirst , 残りのリストがrest
+ という形
+ *)
+
+ (* gakusei_t list型のデータ例*)
+
+let lst1 = []
+let lst2 = [
+    {name = "asai"; point = 70; grade = "B"}]
+let lst3 = [
+        {name = "asai"; point = 70; grade = "B"};
+        {name = "kaneko"; point = 85; grade = "A"}]
+let lst4 = [
+        {name = "yoshida"; point = 80; grade = "A"};
+        {name = "asai"; point = 70; grade = "B"};
+        {name = "kaneko"; point = 85; grade = "A"}]
+
+
+(* 目的: 学生リスト lst のうち、成績が "A" の人の数を返す*)
+(* count_A: gakusei_t list -> int *)
+
+let rec count_A lst = match lst with
+    [] -> 0
+|   ({name = n; point = p; grade = g} as first) :: rest -> 
+        ( if g = "A" then 1 else 0 ) + count_A rest
+
+(* テスト *)
+let test1 = count_A lst1 = 0
+let test2 = count_A lst2 = 0
+let test3 = count_A lst3 = 1
+let test4 = count_A lst4 = 2
