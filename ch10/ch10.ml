@@ -57,7 +57,9 @@ let prefixTest4 = prefix [2; 3; 4] = [[2]; [2; 3]; [2; 3; 4]]
 
 let rec minimum lst = match lst with
     [] -> max_int
-|   first :: rest -> if first > minimum rest then minimum rest else first
+   first :: rest -> 
+      let min_rest = minimum rest in 
+        if first > min_rest then min_rest else first
 
 (* test *)
 let minimum_test1 = minimum [] = max_int
@@ -65,3 +67,10 @@ let minimum_test2 = minimum [1] = 1
 let minimum_test3 = minimum [1;2] = 1
 let minimum_test4 = minimum [2;1] = 1
 let minimum_test4 = minimum [3;2;6;4;1;8] = 1 
+
+let z = let x = 2 in x + x 
+
+let z2 =
+    let x = 3 in
+      let y = 4 in
+        x + y
