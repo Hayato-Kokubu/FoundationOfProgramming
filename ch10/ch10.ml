@@ -111,3 +111,23 @@ let galisei_list3 = summarize [gakusei1; gakusei2]  = (1,1,0,0)
 let galisei_list4 = summarize [gakusei2; gakusei1]  = (1,1,0,0)
 let galisei_list5 = summarize [gakusei1; gakusei2; gakusei3]   = (2,1,0,0)
 let galisei_list6 = summarize [gakusei1; gakusei2; gakusei3; gakusei4; gakusei5]   = (2,1,1,1)
+
+
+(* 目的: 与えられた２つのリスト lst1 とlst2 を結合したリストを返す *)
+(* append: int list -> int list -> int list *)
+
+let x = []
+
+let rec append lst1 lst2 = match lst1 with
+  [] -> lst2
+| first :: rest ->  first :: append rest lst2
+
+
+(* test *)
+let appendTest1 = append [] [] = []
+let appendTest2 = append [1] [] = [1]
+let appendTest3 = append [] [2] = [2]
+let appendTest4 = append [1] [2] = [1; 2]
+let appendTest5 = append [2] [1] = [2; 1]
+let appendTest6 = append [2;4;6] [1;3] = [2; 4; 6; 1; 3]
+
