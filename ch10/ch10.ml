@@ -57,7 +57,7 @@ let prefixTest4 = prefix [2; 3; 4] = [[2]; [2; 3]; [2; 3; 4]]
 
 let rec minimum lst = match lst with
     [] -> max_int
-   first :: rest -> 
+|   first :: rest -> 
       let min_rest = minimum rest in 
         if first > min_rest then min_rest else first
 
@@ -74,3 +74,40 @@ let z2 =
     let x = 3 in
       let y = 4 in
         x + y
+
+
+(* 学生ひとり分のデータ(名前・点数・成績)を表す型 *)
+type gakusei_t = {
+    name:  string; (* 名前 *)
+    point: int;    (* 点数 *)
+    grade: string; (* 成績 *)
+}
+
+(* 学生のデータ例*)
+let gakusei1        = {name = "asai"; point = 70; grade = "B"}
+let gakusei1_2      = {name = "asai2"; point = 70; grade = "B"}
+let gakusei2        = {name = "yoshida"; point = 80; grade = "A"}
+let gakusei3        = {name = "kaneko"; point = 85; grade = "A"}
+let gakusei4        = {name = "kaneko"; point = 85; grade = "C"}
+let gakusei5        = {name = "kaneko"; point = 85; grade = "F"}
+
+(* 目的: 学生のリスト lst を受け取り、各成績の人数を集計する *)
+(* summarize: gakusei_t list -> int * int * int * int *)
+
+let rec summarize lst = match lst with 
+  [] -> (0,0,0,0)
+| ({name = n0; point = p0; grade = g0} as first) :: rest -> 
+  let (a,b,c,d) = summarize rest in
+    match g0 with 
+      "A" -> (a + 1,b    ,c    ,d    )
+|     "B" -> (a    ,b + 1,c    ,d    )
+|     "C" -> (a    ,b    ,c + 1,d    )
+|     _   -> (a    ,b    ,c    ,d + 1)
+
+(* test *)
+let galisei_list1 = summarize [] = (0,0,0,0)
+let galisei_list2 = summarize [gakusei1]  = (0,1,0,0)
+let galisei_list3 = summarize [gakusei1; gakusei2]  = (1,1,0,0)
+let galisei_list4 = summarize [gakusei2; gakusei1]  = (1,1,0,0)
+let galisei_list5 = summarize [gakusei1; gakusei2; gakusei3]   = (2,1,0,0)
+let galisei_list6 = summarize [gakusei1; gakusei2; gakusei3; gakusei4; gakusei5]   = (2,1,1,1)
