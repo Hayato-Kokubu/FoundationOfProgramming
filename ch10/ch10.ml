@@ -131,3 +131,23 @@ let appendTest4 = append [1] [2] = [1; 2]
 let appendTest5 = append [2] [1] = [2; 1]
 let appendTest6 = append [2;4;6] [1;3] = [2; 4; 6; 1; 3]
 
+(* 目的: 与えられた２つの昇順整数リスト lst1 とlst2 を結合した、昇順リストを返す *)
+(* merge: int list -> int list -> int list*)
+
+let rec merge lst1 lst2 = match (lst1 , lst2) with
+  ([], []) -> []
+| (first :: rest, []) -> lst1
+| ([], first :: rest) -> lst2
+| (first1 :: rest1, first2 :: rest2) -> 
+  if(first1 < first2) then first1 :: merge rest1 lst2
+                       else first2 :: merge lst1 rest2
+
+
+(* test *)
+let mergeTest1 = merge [] [] = []
+let mergeTest2 = merge [1] [] = [1]
+let mergeTest3 = merge [] [2] = [2]
+let mergeTest4 = merge [1] [2] = [1;2]
+let mergeTest5 = merge [2] [1] = [1;2]
+let mergeTest6 = merge [1] [1] = [1;1]
+let mergeTest7 = merge [2;3;6] [1;4;4] = [1;2;3;4;4;6]
