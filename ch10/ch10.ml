@@ -51,3 +51,17 @@ let prefixTest4 = prefix [2; 3; 4] = [[2]; [2; 3]; [2; 3; 4]]
 = [2] :: ( [ [2; 3] ; [2; 3 ; 4] ] )
 = [ [2] ; [2; 3] ; [2; 3 ; 4] ]
 *)
+
+(* 目的: 受け取ったint のリストの最小値を返す*)
+(* minimum: int list -> int *)
+
+let rec minimum lst = match lst with
+    [] -> max_int
+|   first :: rest -> if first > minimum rest then minimum rest else first
+
+(* test *)
+let minimum_test1 = minimum [] = max_int
+let minimum_test2 = minimum [1] = 1
+let minimum_test3 = minimum [1;2] = 1
+let minimum_test4 = minimum [2;1] = 1
+let minimum_test4 = minimum [3;2;6;4;1;8] = 1 
